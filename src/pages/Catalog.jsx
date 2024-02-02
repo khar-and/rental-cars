@@ -1,9 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { fetchAllAdverts } from "../api/fetch";
+import CarList from "../components/CarList/CarList";
 
 const Catalog = () => {
-  return (
-    <div>Catalog</div>
-  )
-}
+  const [cars, setCars] = useState([]);
 
-export default Catalog
+  useEffect(() => {
+    handleGetCatalog();
+  }, []);
+
+  const handleGetCatalog = async () => {
+    try {
+      const data = await fetchAllAdverts();
+      setCars(data);
+    } catch {
+      alert("Somethung wrong");
+    }
+  };
+
+  return (
+    <div>
+      <CarList cars={cars} />
+    </div>
+  );
+};
+
+export default Catalog;
