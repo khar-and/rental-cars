@@ -1,32 +1,16 @@
-import React, { useState } from "react";
-import Modal from "../Modal/Modal";
-import Button from "../Button/Button";
+import React from "react";
+
+import CarItem from "../CarItem/CarItem";
+import { List } from "./CarList.styled";
 
 const CarList = ({ cars }) => {
-  const [showModal, setShowModal] = useState(false);
-
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
-
   return (
     <>
-      <ul>
-        {cars.map(({ id, img, make, model, year, rentalPrice }) => {
-          return (
-            <li key={id}>
-              <img src={img} alt="Car foto" width={"274"} height={"268"} />
-
-              <p>{make}</p>
-              <p>{model}</p>
-              <p>{year}</p>
-              <p>{rentalPrice}</p>
-              <Button label={"Learn more"} onClick={toggleModal} />
-            </li>
-          );
+      <List>
+        {cars.map((car) => {
+          return <CarItem key={car.id} car={car} />;
         })}
-      </ul>
-      {showModal && <Modal onClose={toggleModal} />}
+      </List>
     </>
   );
 };
