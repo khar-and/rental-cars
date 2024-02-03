@@ -50,7 +50,6 @@ const CarItem = ({ car }) => {
 
   return (
     <>
-      {" "}
       <ItemCar>
         <WrapImg>
           <Img src={car.img} alt="Car foto" />
