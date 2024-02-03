@@ -34,7 +34,14 @@ const CarItem = ({ car }) => {
 
   const handleButtonClick = () => {
     setIsFavorite(!isFavorite);
-    // onButtonClick(); додаємо до фейворітс
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (!isFavorite) {
+      favorites.push(car);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    } else {
+      const delFromFavorites = favorites.filter((item) => item.id !== car.id);
+      localStorage.setItem("favorites", JSON.stringify(delFromFavorites));
+    }
   };
 
   const toggleModal = () => {
