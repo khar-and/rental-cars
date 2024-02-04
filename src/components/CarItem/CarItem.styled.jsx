@@ -21,7 +21,8 @@ export const Img = styled.img`
 export const SpanWrap = styled.div`
   display: flex;
   justify-content: space-between;
-
+  white-space: nowrap;
+  overflow: hidden;
   margin-top: 14px;
 `;
 
