@@ -1,26 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { fetchAllAdverts } from "../api/fetch";
 import CarList from "../components/CarList/CarList";
+import { useDispatch, useSelector } from "react-redux";
+import { setCars } from "../redux/slice";
 
 const Catalog = () => {
-  const [cars, setCars] = useState([]);
-  // const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
+  const cars = useSelector((state) => state.catalog.cars);
 
   useEffect(() => {
     handleGetCatalog();
   }, []);
 
-  // const handleLoadMore = () => {
-  //   const nextPage = page + 1;
-  //   setPage(nextPage);
-  // };
-
   const handleGetCatalog = async () => {
     try {
       const data = await fetchAllAdverts();
-      // const visible = data.slice((page - 1) * 12, page * 12);
-      // setCars((prevCars) => [...prevCars, ...visible]);
-      setCars(data);
+      // setCars(data);
+      dispatch(setCars(data));
     } catch {
       alert("Something wrong");
     }
