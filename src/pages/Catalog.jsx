@@ -10,12 +10,13 @@ const Catalog = () => {
 
   useEffect(() => {
     handleGetCatalog();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleGetCatalog = async () => {
     try {
       const data = await fetchAllAdverts();
-      // setCars(data);
+
       dispatch(setCars(data));
     } catch {
       alert("Something wrong");
